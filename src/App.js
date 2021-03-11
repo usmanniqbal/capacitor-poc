@@ -1,13 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { Plugins } from '@capacitor/core';
+import { useState } from 'react';
 
-function App() {
+const { Device, Modals } = Plugins;
+function MyApp() {
+  const showDeviceInfo = async () => {
+    const info = await Device.getInfo();
+    await Modals.alert({
+      title: 'Info',
+      message: `UUID: ${info.uuid};
+        Model: ${info.model}`
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Served version 2.0
         </p>
         <a
           className="App-link"
@@ -17,9 +29,10 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={showDeviceInfo}>Show Device Info</button>
       </header>
     </div>
   );
 }
 
-export default App;
+export default MyApp;
