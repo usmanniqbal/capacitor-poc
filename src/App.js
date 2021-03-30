@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import { Plugins } from '@capacitor/core';
-import { useState } from 'react';
 
 const { Device, Modals } = Plugins;
 function MyApp() {
